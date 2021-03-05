@@ -1,3 +1,5 @@
+import './SeasonDisplay.css';
+
 import React from 'react';
 
 const getSeason = (lat, month) => {
@@ -19,16 +21,26 @@ const seasonConfig = {
 	},
 };
 
-const SeasonDisplay = ({ lat }) => {
+const SeasonDisplay = ({ lat, long }) => {
 	const month = new Date().getMonth();
 	const season = getSeason(lat, month);
 	const { text, iconName } = seasonConfig[season];
 
 	return (
-		<div>
-			<i className={`${iconName} icon`}></i>
-			<h1>{text}</h1>
-			<i className={`${iconName} icon`}></i>
+		<div className={`season-display ${season}`}>
+			<div>
+				<i className={`massive ${iconName} icon icon-left`}></i>
+			</div>
+
+			<div>
+				<h1>
+					{text} Your location: {`${lat}, ${long}`}
+				</h1>
+			</div>
+
+			<div>
+				<i className={`massive ${iconName} icon icon-right`}></i>
+			</div>
 		</div>
 	);
 };
